@@ -1,5 +1,7 @@
 # Markdown 문법
 
+> 소스 코드 단축키: `커맨드 + /`
+
 ## Heading
 
 `#`의 개수에 따라 글자 크기가 달라진다.
@@ -47,15 +49,15 @@ print{hello,world!}
 
 ## Link
 
-`[]()`을 통해 링크를 작성 가능하다. 문자열/url
+`/[문자열](url)`을 통해 링크를 작성 가능하다. 
 
 - 내부 파일 링크도 작성 가능하다.
-- [예시](./Python.md)
+- [예시](./Markdown_practice)
 - `./`는 같은 폴더 안에 있다는 뜻이다.
 
 ## 이미지
 
-`![]()`을 통해 이미지를 사용가능하다. 문자열/url
+`/![문자열](url)`을 통해 이미지를 사용가능하다. 
 
 상대경로와 절대경로의 차이에 주의.
 
@@ -95,7 +97,8 @@ print{hello,world!}
 
 
 
-소스 코드 단축키: `커맨드 + /`
 
 
+![Screen Shot 2022-07-05 at 7.44.29 PM](Markdown.assets/Screen Shot 2022-07-05 at 7.44.29 PM.png)
 
+![Screen Shot 2022-07-05 at 7.49.59 PM](Markdown.assets/Screen Shot 2022-07-05 at 7.49.59 PM.png)
