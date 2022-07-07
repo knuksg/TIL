@@ -27,11 +27,15 @@
 
 ### - pull: 로컬저장소로 원격저장소 변경사항을 가져온다.
 
-- git push <원격저장소이름> <브랜치이름>
-- git push origin master
+- git pull <원격저장소이름> <브랜치이름>
+- git pull origin master
 
 ### - 예외 처리를 위한 명령어
 
 - Touch .gitignore 명령어를 실행한 후, .gitignore 안에 예외 처리할 파일, 폴더, 확장자(<*.확장자>로 표시)를 추가한다.
   - 이미 커밋된 작업은 예외 처리 불가.
   - [Gitignore.io](https://www.toptal.com/developers/gitignore/): 예외 처리 파일을 만들어주는 사이트.
+
+### -  clone: 원격저장소를 복제하여 로컬저장소로 가져온다.
+
+- git clone origin <원격저장소 주소>
