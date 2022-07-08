@@ -13,12 +13,8 @@
 | Front-end_devs                |             |          |
 | Back-end_devs                 |             |          |
 | Full-stack_devs               |             |          |
+| [취업특강](./취업특강)        | Lecture     | 08/07/22 |
 |                               |             |          |
-|                               |             |          |
 
 
-
-## 
-
-## 
 
