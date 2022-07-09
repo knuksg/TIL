@@ -6,7 +6,7 @@
 | ------------------------------ | ----------- | -------- |
 | [SW_Settings](./SW_Settings)   | Arrangement | 06/07/22 |
 | [Markdown](./Markdown/)        | Lecture     | 06/07/22 |
-| [Git&Github](./Git&Github/)    | Lecture     | 07/07/22 |
+| [Git&Github](./Git&Github/)    | Lecture     | 09/07/22 |
 | Python                         |             |          |
 | Algorithm                      |             |          |
 | DB                             |             |          |
