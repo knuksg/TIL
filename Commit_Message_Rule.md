@@ -4,7 +4,7 @@
 
 - 이 문서는 간결하고 적확한 깃 커밋 메시지를 위한 규칙들을 정리한 것이다.
 
-## 2. 상세
+## 2. 방법 1
 
 ### 2.1. 수정을 뜻하는 메시지
 
@@ -50,7 +50,17 @@
 
 - 오타 수정이 있을 때 사용함.
 
-## 3. 참고 자료
+## 3. 방법 2
+
+![Screen Shot 2022-07-11 at 5.45.18 PM](Commit_Message_Rule.assets/Screen Shot 2022-07-11 at 5.45.18 PM.png)
+
+![Screen Shot 2022-07-11 at 5.45.29 PM](Commit_Message_Rule.assets/Screen Shot 2022-07-11 at 5.45.29 PM.png)
+
+![Screen Shot 2022-07-11 at 5.45.38 PM](Commit_Message_Rule.assets/Screen Shot 2022-07-11 at 5.45.38 PM.png)
+
+## 4. 참고 자료
 
 [좋은 git commit 메시지를 위한 영어 사전](https://blog.ull.im/engineering/2019/03/10/logs-on-git.html)
+
+[커밋 메시지 작성법](https://velog.io/@palza4dev/TIL-28.-GitGithub-커밋-메시지-작성법)
 
