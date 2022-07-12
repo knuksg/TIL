@@ -7,7 +7,8 @@ max2 = numbers[0] # 두 번째로 큰 수
 
 for i in numbers:
     if max1 < i:
+        max2 = max1
         max1 = i
-    if max1 > i:
+    elif max2 < i < max1:
         max2 = i   
 print(max2)
