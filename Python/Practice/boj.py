@@ -71,11 +71,43 @@
 #     ten.append(int(input())%42)
 # print(len(set(ten)))
 
+# n = int(input())
+# m = list(map(int, input().split()))
+
+# print(sum(m)/max(m)*100/n)
+
+
+# a = int(input())
+# m = []
+# while len(m) < a:
+#     m.append(list(input().strip()))
+# cnt = 0
+# score = 0
+# scores = []
+# for ii in range(len(m)):
+#     for i in m[ii]:
+#         if i == 'O':
+#             score += (1+cnt)
+#             cnt += 1
+#         else:
+#             cnt = 0
+#     scores.append(score)
+#     score = 0
+#     cnt = 0
+# for i in range(a):
+#     print(scores[i])
 
 import sys
 input = sys.stdin.readline
 
-n = int(input())
-m = list(map(int, input().split()))
+c = int(input())
+n = []
+cnt = 0
+for i in range(c):
+    n += [list(map(int, input().split()))]
+    print((sum(n[i])-n[i][0])/n[i][0]) #평균
+    for ii in range(n[i][0]):
+        if n[i][ii+1] > (sum(n[i])-n[i][0])/n[i][0]:
+            cnt += 1 # 평균보다 높은 점수 카운트
 
-print(sum(m)/max(m)*100/n)
+print(n)
