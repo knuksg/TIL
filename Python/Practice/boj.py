@@ -101,13 +101,16 @@ import sys
 input = sys.stdin.readline
 
 c = int(input())
-n = []
-cnt = 0
+b = 0
+ns = []
 for i in range(c):
-    n += [list(map(int, input().split()))]
-    print((sum(n[i])-n[i][0])/n[i][0]) #평균
-    for ii in range(n[i][0]):
-        if n[i][ii+1] > (sum(n[i])-n[i][0])/n[i][0]:
-            cnt += 1 # 평균보다 높은 점수 카운트
-
-print(n)
+    n = map(int, input().split())
+    ns = list(n)
+    a = (sum(ns) - ns[0]) / ns[0] # 평균
+    na = ns[0]
+    del ns[0]
+    for i in ns:
+        if i > a:
+            b += 1
+    print(f'{b/na*100:.3f}%')
+    b = 0
