@@ -1,0 +1,5 @@
+n = int(input())
+m = map(int, input().split())
+ms = list(m)
+ms.sort()
+print(ms[int((n)/2)])
