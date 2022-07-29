@@ -2,17 +2,12 @@ t = int(input())
 
 for i in range(t):
     n = int(input())
-    m = [n]
-    cnt = 0
+    m = n
     result = set()
-    while len(result) < 10:
-        n = m[0]*(cnt)
-        while n != 0:
-            result.add(n%10)
-            n = n//10
-        cnt += 1
-    n = m[0]*(cnt-1)
+    while True:
+        for j in str(n):
+            result.add(j)
+        if len(result) == 10:
+            break
+        n += m
     print(f'#{i+1} {n}')
-    cnt = 0
-    result.clear()
-    m.clear()
