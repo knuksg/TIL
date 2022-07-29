@@ -1,39 +1,22 @@
 import sys
 sys.stdin = open("input.txt", "r")
 
-t = int(input())
-for i in range(t):
-    n, k = map(int, input().split())
-    scores = {}
-    for j in range(n):
-        scores[j+1] = list(map(int, input().split()))
-        scores[j+1] = scores[j+1][0]*(35/100) + scores[j+1][1]*(45/100) + scores[j+1][2]*(20/100)
-    new_scores = sorted(scores.items(), key=lambda x:x[1], reverse=True)
-    cnt = 0
-    rst = 0
-    for x, y in new_scores:
-        cnt += 1
-        if x == k:
-            rst = cnt / n * 100
-            break
+for i in range(10):
+    n = int(input())
+    test_case = list(input().split())
+    c = int(input())
+    c_list = input().split('I')
+    command_list = []
+    for j in range(c+1):
+        if j != 0:
+            command_list.append(c_list[j].split())
+    for j in command_list:
+        for x in range(int(j[1])):
+            test_case.insert(int(j[0]), j[len(j)-x-1])
     print(f'#{i+1}', end=' ')
-    if rst > 90:
-        print('D0')
-    elif rst > 80:
-        print('C-')
-    elif rst > 70:
-        print('C0')
-    elif rst > 60:
-        print('C+')
-    elif rst > 50:
-        print('B-')
-    elif rst > 40:
-        print('B0')
-    elif rst > 30:
-        print('B+')
-    elif rst > 20:
-        print('A-')
-    elif rst > 10:
-        print('A0')
-    else:
-        print('A+')
+    for j in range(len(test_case)):
+        if j == 9:
+            print(test_case[j])
+            break
+        else:
+            print(test_case[j], end=' ')
