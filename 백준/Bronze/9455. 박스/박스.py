@@ -16,4 +16,5 @@ for _ in range(int(input())):
         for c in range(m):
             if box[r][c] == 1:
                 cnt += [box[r][c] for c in range(c+1)].count(0)
+    # 만약 박스라면, 지상에서부터 박스까지의 리스트 중 0이 몇 개인지 카운트해서 추가.
     print(cnt)
