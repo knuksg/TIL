@@ -41,6 +41,3 @@ result8 = str.find('o', 5, 11)  # -1 "DMask B" (5~11 사이 o 가 없음.)
 
 출처: https://blockdmask.tistory.com/569 [개발자 지망생:티스토리]
 ```
-
-
-

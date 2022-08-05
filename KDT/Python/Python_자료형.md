@@ -1,4 +1,4 @@
-# Python_DataType
+# Python_자료형
 
 ## 1. 숫자형
 
@@ -516,16 +516,3 @@ False
 True
 ```
 
-## 8. 변수
-
-
-```python
-```
-
-
-```python
-```
-
-
-```python
-```
