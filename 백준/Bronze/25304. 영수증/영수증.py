@@ -1,9 +1,8 @@
 x = int(input())
-n = int(input())
 rst = 0
-for i in range(n):
+for _ in range(int(input())):
     a, b = map(int, input().split())
-    rst += a*b
+    rst += a * b
 if x == rst:
     print('Yes')
 else:
