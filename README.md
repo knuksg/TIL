@@ -17,7 +17,7 @@
 
 [Python](./KDT/Python)
 
-[Algorithm](./KDT/Algoritym)
+[Algorithm](./KDT/Algorithm)
 
 [DB](./KDT/DB)
 
