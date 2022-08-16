@@ -9,7 +9,7 @@
 
 [HPHK 프로젝트 04 - 알고리즘 모의고사 (2022/08/05)](./Project/HPHK_Project_04)
 
-[HPHK 프로젝트 04 - 알고리즘 모의고사 (2022/08/12)](./Project/HPHK_Project_05)
+[HPHK 프로젝트 05 - 알고리즘 모의고사 (2022/08/12)](./Project/HPHK_Project_05)
 
 ## 기초공부
 

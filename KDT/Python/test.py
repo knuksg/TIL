@@ -1,18 +1,19 @@
 # import sys
 # input = sys.stdin.readline
+import heapq
 from pprint import pprint
 import sys
 sys.stdin = open("input.txt", "r")
 
 
-number = []
-for i in range(1, 9):
-    number.append((int(input()), i))
-score = 0
-new_number = sorted(number)
-list_ = []
-for i in range(3, 8):
-    score += new_number[i][0]
-    list_.append(new_number[i][1])
-print(score)
-print(*sorted(list_))
+n = input()
+start = int(n)
+for i in range(40, 41):
+    number = [start]
+    len_number = len(number)
+    while start:
+        start -= i
+        number.append(start)
+        i = number[-1]
+    print(number)
+    start = int(n)
