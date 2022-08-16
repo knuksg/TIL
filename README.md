@@ -1,9 +1,9 @@
 # 📚 Today I Learnd
 ## 프로젝트
 
-[HPHK 프로젝트 01 - 파이썬 기반 데이터 활용(2022/07/15)](./Project/HPHK_Project_01)
+[HPHK 프로젝트 01 - 파이썬 기반 데이터 활용 (2022/07/15)](./Project/HPHK_Project_01)
 
-[HPHK 프로젝트 02 - 파이썬 기반 데이터 활용(2022/07/22)](./Project/HPHK_Project_02)
+[HPHK 프로젝트 02 - 파이썬 기반 데이터 활용 (2022/07/22)](./Project/HPHK_Project_02)
 
 [HPHK 프로젝트 03 - 알고리즘 모의고사 (2022/07/29)](./Project/HPHK_Project_03)
 
