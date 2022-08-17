@@ -6,14 +6,15 @@ import sys
 sys.stdin = open("input.txt", "r")
 
 
-n = input()
-start = int(n)
-for i in range(40, 41):
-    number = [start]
-    len_number = len(number)
-    while start:
-        start -= i
-        number.append(start)
-        i = number[-1]
-    print(number)
-    start = int(n)
+for _ in range(int(input())):
+    k = int(input())
+    n = int(input())
+    def home(k, n):
+        if k == 0:
+            return n
+        else:
+            sum_ = 0
+            for i in range(1, n+1):
+                sum_ += home(k-1, i)
+            return sum_
+    print(home(k, n))
