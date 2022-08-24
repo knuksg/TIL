@@ -27,6 +27,7 @@
 <details>
 <summary>조건/반복문</summary>
 <div markdown="1">
+
 # 조건/반복문
 
 ## 1. 개요
@@ -89,6 +90,7 @@ else:
 <details>
 <summary>함수</summary>
 <div markdown="1">
+
 # 함수
 
 ## 1. 개요
@@ -193,6 +195,8 @@ result8 = str.find('o', 5, 11)  # -1 "DMask B" (5~11 사이 o 가 없음.)
 
 <details>
 <summary>데이터 구조</summary>
+<div markdown="1">
+
 # 데이터 구조
 
 ## 1. 숫자형
@@ -710,13 +714,13 @@ False
 >>> bool(3)
 True
 ```
-<div markdown="1">
 </div>
 </details>
 
 <details>
 <summary>예외 처리</summary>
 <div markdown="1">
+
 # 예외 처리
 
 ## 1. 개요
@@ -771,6 +775,7 @@ raise <표현식>(메시지)
 <details>
 <summary>OOP</summary>
 <div markdown="1">
+
 # OOP
 
 ## 1. 개요
@@ -921,6 +926,7 @@ MyClass.static_method(...)
 <details>
 <summary>심화</summary>
 <div markdown="1">
+
 # 심화
 
 ## 1. 추가 문법
