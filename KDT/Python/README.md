@@ -2,6 +2,7 @@
 <details>
 <summary>기초</summary>
 <div markdown="1">
+
 # 기초
 
 ## 1. 개요
@@ -82,12 +83,6 @@ else:
 - break: 반복문을 종료한다.
 - continue: 컨티뉴 이후 코드 블록은 실행하지 않고, 다음 반복으로 넘어간다.
 - for-else: 끝까지 반복문을 실행한 후 else문을 실행한다. 단, break를 통해 중간에 종료된 경우, else문은 실행되지 않는다.
-</div>
-</details>
-
-<details>
-<summary>기초</summary>
-<div markdown="1">
 </div>
 </details>
 
