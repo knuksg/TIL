@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- input의 id 이름과 label의 for 이름을 일치시켜야 함.  -->
+  <label for="agreement1">개인정보 수집에 동의합니다</label>
+  <input type="checkbox" name="agreement1" id="agreement1">
+
+  <h1>Form 활용 실습</h1>
+    <form action="">
+      <!-- autofocus 및 label 확인 --> 
+      <div class="input-group">
+        <label for="username">아이디</label> 
+      </div>
+      <input type="text" name="username" id="username" autofocus>
+
+      <!-- disabled 및 value 확인 -->
+      <div class="input-group">
+        <label for="name">이름</label>
+      </div>
+      <input type="text" name="name" value="홍길동" id="name" disabled>
+
+      <!-- label 확인 -->
+      <div class="input-group">
+        <label for="agreement">개인정보 수집에 동의합니다.</label>
+      </div>
+      <input type="checkbox" name="agreement" id="agreement"> 
+
+      <div class="input-group">
+        <label>최종 제출을 확인합니다.</label> 
+      </div>
+      <input type="checkbox">
+    </form>
+    <input type="submit" value="제출">
+
+    <div>
+      <p>checkbox</p>
+      <input id="html" type="checkbox" name="language" value="html"> <label for="html">HTML</label>
+      <input id="python" type="checkbox" name="language" value="python"> <label for="python">파이썬</label>
+      <input id="python" type="checkbox" name="language" value="java"> <label for="java">자바</label>
+      <hr>
+      <p>radio button</p>
+      <input id="행복" type="radio" name="language" value="행복"> <label for="행복">행복</label>
+      <input id="기쁨" type="radio" name="language" value="기쁨"> <label for="기쁨">기쁨</label>
+      <input id="즐거움" type="radio" name="language" value="즐거움"> <label for="즐거움">즐거움</label>
+    </div>
+</body>
+</html>

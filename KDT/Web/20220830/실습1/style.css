@@ -1,0 +1,46 @@
+/* 아래에 CSS를 작성해주세요. */
+@charset "utf-8";
+
+h2 { 
+  text-align: center; 
+  font-family: 'Nanum Gothic', sans-serif;
+  line-height: 0.4;
+  font-weight: 600;
+  font-size: 32px;
+}
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.cards {
+  width: 900px;
+  margin-left: 30px;
+}
+.card {
+  width: 300px;
+  display: inline-block;
+  margin-left: 20px;
+}
+.card-image {
+  width: 100%;
+  border-radius: 1rem;
+}
+.card-text {
+  margin-left: 1rem;
+  line-height: 0.8;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+}
+.card-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: black;
+  line-height: 0.1;
+  word-spacing: -2px;
+  margin-bottom: 1.5rem;
+}
+.gray {
+  color: gray;
+}

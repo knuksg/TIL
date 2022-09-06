@@ -1,0 +1,61 @@
+/* 아래에 CSS를 작성해주세요. */
+@charset "utf-8";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.page {
+  height: 1000px;
+}
+.menu {
+  display: flex;
+  height: 60px;
+  background-color: #24292f;
+}
+.menu1 {
+  display: flex;
+  justify-content: space-evenly ;
+  align-items: center;
+  flex-grow: 1;
+  color: white;
+}
+.menu1-img {
+  height: 40px;
+  border-radius: 50%;
+}
+.menu2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 10;
+  color: white;
+}
+.menu2-text {
+  margin-right: 1rem;
+}
+.menu3 {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  color: white;
+}
+.scroll-menu {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  height: 60px;
+  top: 0rem;
+  left: 0rem;
+  background-color: white;
+}
+.scroll-menu1 {
+  display: flex;
+  flex-grow: 1;
+}
+.scroll-menu2 {
+  display: flex;
+  flex-grow: 10;
+}

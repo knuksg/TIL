@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  min-width: 1280px;
+  color: #333333;
+}
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0%;
+  background-color: white;
+  border-bottom: 1px solid gainsboro;
+}
+.main-nav__logo {
+  padding: 1rem;
+}
+.main-nav__list {
+  display: flex;
+}
+.main-nav__item {
+  margin: 0 .5rem;
+  padding: 1rem;
+}
+.main-nav__link {
+  text-decoration: none;
+  color: black;
+}
+.main-nav__link:hover {
+  color: #f3f0f8;
+}
+.main-banner {
+  background-image: url("../assets/apparel.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 700px;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+.main-about {
+  display: flex;
+  justify-content: center;
+  width: 1280px;
+}
+.main-about__img {
+  width: 500px;
+}
+.main-about__img:hover {
+  filter: grayscale(0.3);
+}
+.main-about__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  padding: 1rem;
+}
+.main-about__title {
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.main-about__subtext {
+  width: 25rem;
+  line-height: 2rem;
+  word-break: break-all;
+}
+.main-more {
+  width: 1280px;
+  justify-content: center;
+  margin-top: 4rem;
+}
+.main-more__title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 4rem;
+}
+.main-more__itemlist {
+  display: flex;
+  justify-content: space-evenly;
+}
+.main-more__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: grayscale(0.6);
+}
+.main-more__item:hover {
+  filter: grayscale(0);
+}
+.main-more__img {
+  width: 64px;
+  height: 64px;
+}
+.main-more__text {
+  padding: 1rem;
+  text-align: center;
+  line-height: 1.5rem;
+}
+.main-topbutton {
+  position: fixed;
+  bottom: 1px;
+  right: 1px;
+}
+.main-topbutton__img {
+  width: 2rem;
+  height: 2rem;
+  filter: opacity(0.5);
+}
+.main-topbutton__img:hover {
+  filter: opacity(1);
+}
+.product-container {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+}
+.product-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1280px;
+}
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  border: 1px solid #8b8b8b;
+  margin: 0.3rem 0.3rem;
+}
+.product-item__text {
+  width: 300px;
+  padding: .5rem;
+  margin-bottom: .5rem;
+}
+.product-item__imgbox {
+  display: flex;
+  justify-content: center;
+  width: 330px;
+}
+.product-item__img {
+  padding: .5rem;
+  width: 100%;
+}
+.product-item__img:hover {
+  filter: invert(1);
+}
+.product-item__title {
+  text-align: center;
+  margin-bottom: .5rem;
+}

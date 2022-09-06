@@ -1,0 +1,40 @@
+/* 아래에 CSS를 작성해주세요. */
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.item {
+  width: 300px;
+  margin: auto;
+}
+.item-img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.item-text {
+  margin-left: 0.7rem;
+  line-height: 0.5;
+}
+.gray {
+  color: rgba(128, 128, 128, 0.792);
+}
+.blue {
+  color: rgb(0, 204, 255);
+}
+.bold {
+  font-weight: 700;
+}
+.subtext {
+  font-size: 13px;
+}
+h3 {
+  font-size: 16px;
+  font-weight: 300;
+}
+.price {
+  font-size: 23px;
+  line-height: 0.1;
+}

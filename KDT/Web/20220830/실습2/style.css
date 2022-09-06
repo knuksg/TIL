@@ -1,0 +1,32 @@
+/* 아래에 CSS를 작성해주세요. */
+.card {
+  width: 300px;
+  margin: auto;
+}
+.card-image {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.card-text {
+  margin-left: 0.7rem;
+  line-height: 0.5;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 13px;
+}
+.gray {
+  color: rgba(128, 128, 128, 0.792);
+}
+.blue {
+  color: rgb(0, 204, 255);
+}
+.bold {
+  font-weight: 700;
+}
+h3 {
+  font-size: 16px;
+  font-weight: 300;
+}
+.price {
+  font-size: 20px;
+  line-height: 0.1;
+}
