@@ -1,0 +1,39 @@
+
+.btn-cart {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+.btn-cart:hover {
+  color: white;
+  background-color: black;
+}
+
+.main-banner {
+  padding: 100px;
+}
+
+.star {
+  color: #fdc103;
+}
+
+.card-sale {
+  right: 0%;
+}
+
+.item-input {
+  width: 40px;
+  height: 40px;
+}
+
+.icon-20 {
+  font-size: 20px;
+}
+
+.icon-32 {
+  font-size: 32px;
+}
+
+.money {
+  font-size: 48px;
+}

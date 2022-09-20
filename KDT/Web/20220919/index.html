@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <!-- animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- carousel -->
+    <style>
+      .crs-items {
+        position: relative;
+        display: flex;
+        width: 25rem;
+        height: 5rem;
+        overflow: hidden;
+      }
+      .crs-item {
+        position: absolute;
+        top: 0;
+        width: 25rem;
+        height: 5rem;
+        background-color: cornflowerblue;
+        display: none;
+      }
+      .active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: active 1.5s;
+      }
+      @keyframes active {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+    </style>
+    <!-- modal -->
+    <style>
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        width: 100%;
+        height: 100vh;
+
+        color: white;
+        justify-content: center;
+        align-items: center;
+
+        display: none;
+      }
+      .modal-active {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .password {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container my-5">
+      <h1 class="text-center">비밀번호 생성 규칙</h1>
+      <!-- carousel -->
+      <div class="d-flex justify-content-center text-white">
+        <div class="crs-items">
+          <div class="crs-item active">
+            <p class="m-0">1. 비밀번호는 여덟 자리 이상이어야 합니다.</p>
+          </div>
+          <div class="crs-item">
+            <p class="m-0">2. 비밀번호와 비밀번호 확인이 일치해야 합니다.</p>
+          </div>
+          <div class="crs-item">
+            <p class="m-0">3. 오버레이 영역을 클릭했을 때에만 애니메이션이 동작합니다.</p>
+          </div>
+          <div class="crs-item">
+            <p class="m-0">4. 올바른 비밀번호를 제출하면 비밀번호를 초기화 합니다.</p>
+          </div>
+        </div>
+      </div>
+      <!-- prev/next button -->
+      <div class="text-center my-3">
+        <button id="prevBtn">prev</button>
+        <button id="nextBtn">next</button>
+      </div>
+      <!-- modal button -->
+      <div class="d-flex justify-content-center">
+        <button id="modal-btn">비밀번호 생성하기</button>
+      </div>
+      <!-- modal -->
+      <div class="modal-overlay">
+        <form id="modal-content" action="" class="d-flex flex-column gap-2">
+          <label for="password" class="">비밀번호</label>
+          <input type="password" name="password" id="password" class="tab1" onkeyup="enterkey()" />
+          <label for="password_confirmation" class="">비밀번호 확인</label>
+          <input type="password" name="password_confirmation" id="password_confirmation" onkeyup="enterkey()" />
+        </form>
+        <button id="submit-btn" type="submit" class="my-3" onkeydown="tabkey()">확인</button>
+      </div>
+    </div>
+    <script>
+      // prevBtn
+      const prevBtn = document.querySelector("#prevBtn");
+      prevBtn.addEventListener("click", function () {
+        const currentElement = document.querySelector(".active");
+        const items = document.querySelectorAll(".crs-item");
+        const idx = [...items].indexOf(currentElement);
+        currentElement.classList.toggle("active");
+        items[(idx + 3) % items.length].classList.toggle("active");
+      });
+      // nextBtn
+      const nextBtn = document.querySelector("#nextBtn");
+      nextBtn.addEventListener("click", function () {
+        const currentElement = document.querySelector(".active");
+        const items = document.querySelectorAll(".crs-item");
+        const idx = [...items].indexOf(currentElement);
+        currentElement.classList.toggle("active");
+        items[(idx + 1) % items.length].classList.toggle("active");
+      });
+      // modal
+      const modalToggle = function () {
+        document.querySelector(".modal-overlay").classList.toggle("modal-active");
+      };
+      // modal button
+      const modlaBtn = document.querySelector("#modal-btn");
+      modlaBtn.addEventListener("click", modalToggle);
+      // modal overlay를 눌렀을 때 애니메이션 실행
+      const modalOverlay = document.querySelector(".modal-overlay");
+      modalOverlay.addEventListener("click", function (event) {
+        if (event.target == event.currentTarget) {
+          const modalContent = document.querySelector("#modal-content");
+          modalContent.classList.toggle("animate__animated");
+          modalContent.classList.toggle("animate__shakeX");
+        }
+      });
+      // 애니메이션이 끝나면 애니메이션 제거
+      const modalContent = document.querySelector("#modal-content");
+      modalContent.addEventListener("animationend", function () {
+        modalContent.classList.toggle("animate__animated");
+        modalContent.classList.toggle("animate__shakeX");
+      });
+
+      // submitBtn
+      const submitBtn = document.querySelector("#submit-btn");
+      submitBtn.addEventListener("click", function (event) {
+        const password = document.querySelector("#password").value;
+        const password_confirmation = document.querySelector("#password_confirmation").value;
+        if (password.length < 8) {
+          alert("비밀번호는 여덟 자리 이상이어야 합니다.");
+        } else if (password_confirmation.length < 8) {
+          alert("비밀번호는 여덟 자리 이상이어야 합니다.");
+        } else if (password != password_confirmation) {
+          alert("비밀번호가 일치하지 않습니다.");
+        } else {
+          // modal 토글 작동시키고 비밀번호와 비밀번호 확인 초기화
+          document.querySelector(".modal-overlay").classList.toggle("modal-active");
+          const password = document.querySelector("#password");
+          const password_confirmation = document.querySelector("#password_confirmation");
+          password.value = "";
+          password_confirmation.value = "";
+        }
+      });
+      function enterkey() {
+        if (window.event.keyCode == 13) {
+          // 엔터키가 눌렸을 때
+          const password = document.querySelector("#password").value;
+          const password_confirmation = document.querySelector("#password_confirmation").value;
+          if (password.length < 8) {
+            alert("비밀번호는 여덟 자리 이상이어야 합니다.");
+          } else if (password_confirmation.length < 8) {
+            alert("비밀번호는 여덟 자리 이상이어야 합니다.");
+          } else if (password != password_confirmation) {
+            alert("비밀번호가 일치하지 않습니다.");
+          } else {
+            // modal 토글 작동시키고 비밀번호와 비밀번호 확인 초기화
+            document.querySelector(".modal-overlay").classList.toggle("modal-active");
+            const password = document.querySelector("#password");
+            const password_confirmation = document.querySelector("#password_confirmation");
+            password.value = "";
+            password_confirmation.value = "";
+          }
+        }
+      }
+      function tabkey() {
+        if (window.event.keyCode == 9) {
+          const password = document.querySelector(".tab1");
+          password.focus();
+          console.log(password);
+        }
+      }
+    </script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+  </body>
+</html>

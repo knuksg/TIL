@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.0-beta1 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+    <style>
+      .carousel-items {
+        position: relative;
+        display: flex;
+        width: 10rem;
+        height: 10rem;
+        overflow: hidden;
+      }
+      .carousel-item {
+        position: absolute;
+        top: 0;
+        width: 10rem;
+        height: 10rem;
+        background-color: bisque;
+        display: none;
+      }
+      .active {
+        display: block;
+        animation: active 1.5s;
+      }
+      @keyframes active {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div class="carousel-items">
+        <div class="carousel-item active">1</div>
+        <div class="carousel-item">2</div>
+        <div class="carousel-item">3</div>
+        <div class="carousel-item">4</div>
+      </div>
+    </div>
+    <button id="prevBtn">prev</button>
+    <button id="nextBtn">next</button>
+    <script>
+      const prevBtn = document.querySelector("#prevBtn");
+      prevBtn.addEventListener("click", function () {
+        const currentElement = document.querySelector(".active");
+        const items = document.querySelectorAll(".carousel-item");
+        const idx = [...items].indexOf(currentElement);
+        console.log(currentElement, items, idx);
+        currentElement.classList.toggle("active");
+        items[(idx + 3) % items.length].classList.toggle("active");
+      });
+      const nextBtn = document.querySelector("#nextBtn");
+      nextBtn.addEventListener("click", function () {
+        const currentElement = document.querySelector(".active");
+        const items = document.querySelectorAll(".carousel-item");
+        const idx = [...items].indexOf(currentElement);
+        console.log(currentElement, items, idx);
+        currentElement.classList.toggle("active");
+        items[(idx + 1) % items.length].classList.toggle("active");
+      });
+    </script>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+  </body>
+</html>

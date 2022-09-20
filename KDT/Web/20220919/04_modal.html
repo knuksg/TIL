@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: black;
+        width: 100%;
+        height: 100vh;
+
+        color: white;
+        justify-content: center;
+        align-items: center;
+
+        display: none;
+      }
+      .active {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .password {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="modal-btn">새로운 비밀번호로 변경하기</button>
+    <div class="modal-overlay">
+      <div class="password">
+        <label for="password" class="">새로운 비밀번호</label>
+        <input type="password" class="" name="" id="password" placeholder="" />
+      </div>
+      <div>
+        <button id="modal-cancel-btn">나중에 변경하기</button>
+        <button id="modal-cancel-btn">확인</button>
+      </div>
+    </div>
+
+    <script>
+      const modalToggle = function () {
+        document.querySelector(".modal-overlay").classList.toggle("active");
+      };
+
+      const modlaBtn = document.querySelector("#modal-btn");
+      modlaBtn.addEventListener("click", modalToggle);
+
+      const modalCancelBtn = document.querySelector("#modal-cancel-btn");
+      modalCancelBtn.addEventListener("click", modalToggle);
+
+      const modalOverlay = document.querySelector(".modal-overlay");
+      modalOverlay.addEventListener("click", function () {
+        console.log("asdf");
+      });
+    </script>
+  </body>
+</html>

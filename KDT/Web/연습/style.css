@@ -59,3 +59,8 @@ body {
   display: flex;
   flex-grow: 10;
 }
+
+#check-btn { display: none; }
+#check-btn:checked ~ .sub-text { display: block; } 
+#check-btn:checked ~ .more { display: none; } 
+.sub-text { display: none; }
