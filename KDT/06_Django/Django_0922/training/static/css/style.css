@@ -1,0 +1,28 @@
+/* todaydinner */
+.menu {
+  color: red;
+}
+
+.menu-img {
+  width: 18rem;
+}
+
+.menu-btn {
+  top: 350px;
+}
+
+.index-btn {
+  top: 400px;
+}
+
+/* lottery */
+.lottery-number {
+  align-self: flex-end;
+  width: 300px;
+  margin: auto;
+  padding: 3rem;
+  text-align: left;
+  font-size: 20px;
+  background-color: blue;
+  color: white;
+}

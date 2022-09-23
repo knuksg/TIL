@@ -13,19 +13,17 @@
 
 ## 기초공부
 
-[Git](./KDT/Git/)
+[01_Git](./KDT/01_Git/)
 
-[Python](./KDT/Python)
+[02_Python](./KDT/02_Python/)
 
-[Algorithm](./KDT/Algorithm)
+[03_DB](./KDT/03_DB/)
 
-[DB](./KDT/DB)
+[04_Web](./KDT/04_Web/)
 
-Front-end_devs
+[05_Js](./KDT/05_Js/)
 
-Back-end_devs
-
-Full-stack_devs
+[06_Django](./KDT/06_Django/)
 
 ## 취업특강
 
@@ -33,8 +31,8 @@ Full-stack_devs
 
 ## 환경설정
 
-[SW_Settings](./Configuration/SW_Settings)
+[SW_Settings](./KDT/Configuration/SW_Settings)
 
-[Markdown](./Configuration/Markdown/)
+[Markdown](./KDT/Configuration/Markdown/)
 
-[Commit_Message_Rule](./Configuration/Commit_Message_Rule.md)
+[Commit_Message_Rule](./KDT/Configuration/Commit_Message_Rule.md)
