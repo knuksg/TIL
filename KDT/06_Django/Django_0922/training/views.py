@@ -61,3 +61,18 @@ def lottery(request):
         'numbers': numbers_list,
     }
     return render(request, 'lottery.html', context)
+
+def form(request):
+    return render(request, 'form.html')
+
+def ping(request):
+    return render(request, 'ping.html')
+
+def pong(request):
+    context = {
+        'ball': request.GET['ball']
+    }
+    print(request)
+    print(dir(request))
+    print(request.GET.get('ball'))
+    return render(request, 'pong.html', context)

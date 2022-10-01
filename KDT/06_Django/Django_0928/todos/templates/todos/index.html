@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Todo List</h1>
+<form action="{% url 'todos:create' %}" name="todoform">
+  <div class="input-group mb-3">
+    <label for="content">
+      <span class="input-group-text">할 일</span>
+    </label>
+    <input type="text" name="content" maxlength="80" id="content" class="form-control" />
+  </div>
+  <div class="input-group mb-3">
+    <label for="priority">
+      <span class="input-group-text">우선 순위</span>
+    </label>
+    <select class="form-select" name="priority" id="priority">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <label for="deadline"><span class="input-group-text">마감 기한</span></label>
+    <input type="date" name="deadline" id="deadline" class="form-control form-control-sm" />
+  </div>
+  <div class="d-grid">
+    <input type="submit" value="할 일 추가" id="submit" class="btn btn-outline-primary" />
+  </div>
+</form>
+
+<hr />
+<div class="table-responsive">
+  <table id="my-table" class="table">
+    <thead>
+      <tr class="text-center">
+        <th scope="col" class="text-primary">우선 순위</th>
+        <th scope="col" class="text-primary">할 일</th>
+        <th scope="col" class="text-primary">생성 날짜</th>
+        <th scope="col" class="text-primary">마감 기한</th>
+        <th scope="col" class="text-primary">진행 상태</th>
+        <th scope="col" class="text-primary">상태 변경</th>
+        <th scope="col" class="text-primary">수정</th>
+        <th scope="col" class="text-primary">삭제</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos%}
+      <tr id="todo" class="text-center">
+        <td class="align-middle" scope="row">{{todo.priority}}</td>
+        <td class="align-middle">{{todo.content}}</td>
+        <td class="align-middle">{{todo.created_at}}</td>
+        <td class="align-middle" id="todo_deadline">{{todo.deadline}}</td>
+        <td class="align-middle" id="todo_completed">{{todo.completed}}</td>
+        <td class="align-middle"><a href="{% url 'todos:update' todo.pk %}" class="btn btn-primary">변경</a></td>
+        <td class="align-middle"><a href="{% url 'todos:edit' todo.pk %}" class="btn btn-primary">수정</a></td>
+        <td class="align-middle"><a href="{% url 'todos:delete' todo.pk %}" class="btn btn-primary">삭제</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // 비어있을 때 알림 보내기
+  const submit = document.querySelector("#submit");
+  submit.addEventListener("click", function (event) {
+    const todoForm = document.todoform;
+    if (!todoForm.content.value) {
+      event.preventDefault();
+      alert("할 일이 비어 있습니다.");
+    } else if (!todoForm.deadline.value) {
+      event.preventDefault();
+      alert("마감 기한이 비어 있습니다.");
+    }
+  });
+  // 진행 상태 True일 때 취소선 긋기
+  const completeds = document.querySelectorAll("#todo_completed");
+  const todos = document.querySelectorAll("#todo");
+  for (completed of completeds) {
+    if (completed.innerText === "True") {
+      completed.closest("tr").classList.add("text-decoration-line-through");
+      completed.innerText = "마감";
+    } else {
+      completed.innerText = "진행중";
+    }
+  }
+  // 마감 기한 지났을 때 진행 상태 변경하기
+  const deadlines = document.querySelectorAll("#todo_deadline");
+  const now = new Date();
+  for (deadline of deadlines) {
+    if (new Date(deadline.innerText) < now) {
+      const completed = deadline.closest("#todo").querySelector("#todo_completed");
+      completed.innerText = "마감";
+      completed.closest("tr").classList.add("text-decoration-line-through");
+    }
+  }
+</script>
+{% endblock content %}

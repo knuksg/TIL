@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<p>{{todo.deadline}}</p>
+<form action="{% url 'todos:update2' todo.pk %}" name="todoform">
+  <div class="input-group mb-3">
+    <label for="content">
+      <span class="input-group-text">할 일</span>
+    </label>
+    <input type="text" name="content" maxlength="80" id="content" class="form-control" value="{{todo.content}}" />
+  </div>
+  <div class="input-group mb-3">
+    <label for="priority">
+      <span class="input-group-text">우선 순위</span>
+    </label>
+    <select class="form-select" name="priority" id="priority" value="{{todo.priority}}">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <label for="deadline"><span class="input-group-text">마감 기한</span></label>
+    <input type="date" name="deadline" id="deadline" class="form-control form-control-sm" value="{{todo.deadline}}" />
+  </div>
+  <div class="d-grid">
+    <input type="submit" value="할 일 추가" id="submit" class="btn btn-outline-primary" />
+  </div>
+</form>
+{% endblock content %}

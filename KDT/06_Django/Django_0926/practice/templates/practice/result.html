@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<h3>{{ name }}님과 닮은 포켓몬은</h3>
+<h1>{{ pokemon.name}}</h1>
+<img src="{{pokemon.img}}" alt="" />
+<p></p>
+<p>당신의 라이벌 포켓몬</p>
+<img src="{{api_pokemon}}" alt="" />
+<p>{{api_pokemon_name}}</p>
+
+{% endblock content %}

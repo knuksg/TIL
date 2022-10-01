@@ -27,7 +27,7 @@ Certain feature releases will be designated as **long-term support (LTS) release
 
 LTS 버전은 최신 버전이 아니다. 가장 길게 보안과 유지 보수를 보장받는 버전이다.
 
-`pip3 install django==3.2.12` (2022.09.21. 기준 LTS 버전)
+`pip3 install django==3.2.13` (2022.09.21. 기준 LTS 버전)
 
 ## 04. Django 프로젝트 생성
 

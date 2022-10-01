@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+<h1>lipsum.html</h1>
+<form action="/lipsum-result">
+  <label for="paragraph">문단의 수</label> <br />
+  <input type="number" name="paragraph" id="paragraph" />
+  <p></p>
+  <label for="word">문단별 단어의 수</label> <br />
+  <input type="number" name="word" id="word" />
+  <p></p>
+  <input type="submit" />
+</form>
+{% endblock content %}
