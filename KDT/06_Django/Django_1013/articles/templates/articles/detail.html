@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body %}
+  <p class="text-center">{{ article.movie }}</p>
+  <h1 class="text-center">
+    {{ article.title }}</h1>
+  <div class="text-end">
+    <p>작성자:
+      {{ article.user }}</p>
+    <p>작성 |
+      {{ article.created_at }}</p>
+    <p>수정 |
+      {{ article.updated_at }}</p>
+
+  </div>
+  <p class="text-center">내용:
+    {{ article.content }}</p>
+  {% if request.user == article.user %}
+    <div class="text-center">
+      <a href="{% url 'articles:update' article.pk %}" class="btn btn-dark">수정</a>
+      <a href="{% url 'articles:delete' article.pk %}" class="btn btn-dark">삭제</a>
+    </div>
+  {% endif %}
+{% endblock body %}

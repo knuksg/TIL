@@ -1,5 +1,0 @@
-1. git clone https://github.com/rhello/hello.git
-2. git checkout -b feature
-3. git add .
-4. git commit -m '[feature] edit:hello.txt'
-5. git push origin master

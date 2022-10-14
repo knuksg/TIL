@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div class="text-center">
+    <h1 class="mb-5">영화 목록</h1>
+    {% if request.user.is_authenticated %}
+      <div class="text-end">
+        <a href="{% url 'movies:create' %}" class="btn btn-dark">영화 추가하기</a>
+      </div>
+    {% endif %}
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">pk</th>
+            <th scope="col">title</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for movie in movies %}
+            <tr class="">
+              <td scope="row">{{movie.pk}}</td>
+              <td>
+                <a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock body %}

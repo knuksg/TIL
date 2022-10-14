@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block body %}
+  <div class="text-center">
+    <img src="{% static 'images/tokyo.jpg' %}" class="img-fluid" alt="">
+    <div class="d-flex flex-column gap-3 mt-3">
+      <a name="" id="" class="btn btn-outline-danger" href="{% url 'accounts:signup' %}" role="button">회원 가입</a>
+      <a name="" id="" class="btn btn-outline-danger" href="{% url 'accounts:index' %}" role="button">회원 목록</a>
+    </div>
+  </div>
+{% endblock %}

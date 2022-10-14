@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div class="text-center">
+    <h1 class="mb-5">글 목록</h1>
+    {% if request.user.is_authenticated %}
+      <div class="text-end">
+        <a href="{% url 'articles:create' %}" class="btn btn-dark">글쓰기</a>
+      </div>
+    {% endif %}
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">pk</th>
+            <th scope="col">user</th>
+            <th scope="col">movie</th>
+            <th scope="col">title</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for article in articles %}
+            <tr class="">
+              <td scope="row">{{article.pk}}</td>
+              <td>{{article.user}}</td>
+              <td>{{article.movie}}</td>
+              <td>
+                <a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock body %}

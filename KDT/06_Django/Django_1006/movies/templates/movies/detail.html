@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% load bootstrap5 %}
+  <p class="text-end">{{movie.running_time}}분</p>
+  <h1>{{movie.title}}</h1>
+  <p>{{movie.summary}}</p>
+  <div class="text-end">
+    <a class="btn btn-outline-info" href="{% url 'movies:update' movie.pk %}">수정</a>
+    <a class="btn btn-outline-danger" href="{% url 'movies:delete' movie.pk %}">삭제</a>
+  </div>
+{% endblock body %}

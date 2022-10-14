@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% block content %} {% load django_bootstrap5 %}
+<h1>{{ article.title }}</h1>
+<p>{{ article.content }}</p>
+<a href="{% url 'articles:index' %}">목록으로</a>
+{% endblock content %}

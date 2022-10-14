@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div class="text-center">
+    <h1 class="mb-5">회원 목록</h1>
+    {% if not request.user.is_authenticated %}
+      <div class="text-end">
+        <a href="{% url 'accounts:signup' %}" class="btn btn-dark">가입하기</a>
+      </div>
+    {% endif %}
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">pk</th>
+            <th scope="col">username</th>
+            <th scope="col">email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr class="">
+              <td scope="row">{{user.pk}}</td>
+              <td>
+                <a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a>
+              </td>
+              <td>{{user.email}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock body %}

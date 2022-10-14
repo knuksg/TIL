@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>영화 목록</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">pk</th>
+        <th scope="col">영화 제목</th>
+        <th scope="col" class='text-center'>추천 수</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for movie in movies %}
+        <tr>
+          <th scope="row">{{movie.pk}}</th>
+          <td>
+            <a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a>
+          </td>
+          <td class='text-center'>
+            {{movie.recommended}}
+          </td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+{% endblock body %}

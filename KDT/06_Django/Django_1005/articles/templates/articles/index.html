@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %} {% load static %} {% load django_bootstrap5 %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock %}
+<p>index</p>
+<div>
+  <img src="{% static 'images/unnamed.jpg' %}" class="w-25" alt="" />
+</div>
+<div class="my-3">
+  <a href="{% url 'articles:create' %}">글 쓰기</a>
+</div>
+
+{% for article in articles %}
+<p><a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a> <a href="{% url 'articles:update' article.pk %}">수정</a> <a href="{% url 'articles:delete' article.pk %}">삭제</a></p>
+{% endfor %} {% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block body %}
+  <div>
+    <h1 class="text-center">회원가입</h1>
+    <form action="" method="POST" class="col-md-8 col-lg-6 m-auto">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="d-grid">
+        {% bootstrap_button "제출" button_type="submit" button_class="btn-primary" %}
+      </div>
+    </form>
+
+  </div>
+
+{% endblock body %}
