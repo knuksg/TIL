@@ -5,22 +5,23 @@
 
   <head>
     <title>Title</title>
-    {% block css %}
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <!-- Bootstrap CSS v5.2.1 -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-      <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% endblock css %}
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    {% block css %}{% endblock css %}
 
   </head>
 
-  <body>
+  <body class="bg-black text-light">
     <header>
       <!-- place navbar here -->
-      <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between">
+      <nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between">
         <div class="nav navbar-nav ms-3">
           <a class="navbar-brand" href="#">Movie</a>
           <a class="nav-item nav-link active" href="{% url 'movies:index' %}" aria-current="page">Movies</a>
@@ -38,7 +39,7 @@
         </div>
       </nav>
     </header>
-    <main class="container my-5">
+    <main class="container mt-5">
       {% block body %}{% endblock body %}
     </main>
     <footer>
@@ -49,5 +50,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
   </body>
-
 </html>

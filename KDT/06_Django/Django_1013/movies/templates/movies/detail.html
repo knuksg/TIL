@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
-  <h1 class="text-center">제목:
-    {{ movie.title }}</h1>
-  <div class="text-end">
-    <p class="text-center">내용:
-      {{ movie.content }}</p>
-    <a href="{% url 'articles:article_create' movie.pk %}" class="btn btn-dark">리뷰 쓰기</a>
-    {% if request.user == 'admin' %}
-      <div class="text-center">
-        <a href="{% url 'movies:update' movie.pk %}" class="btn btn-dark">수정</a>
-        <a href="{% url 'movies:delete' movie.pk %}" class="btn btn-dark">삭제</a>
-      </div>
-    {% endif %}
-  {% endblock body %}
+{{movie.movie_avg}}
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      {% if movie.image %}
+        <p class="text-center">
+          <img src="{{ movie.image.url }}" class="img-fluid" alt="">
+        </p>
+      {% endif %}
+    </div>
+    <div class="col-12 col-lg-6 m-auto">
+      <h1 class="text-center">
+        {{ movie.title }}
+        <span class="h6 text-muted">평점: {{ avg_grade }}</span>
+      </h1>
+      <p>
+        {{ movie.content }}</p>
+      {% if request.user %}
+        <div class="text-center">
+          <a href="{% url 'movies:update' movie.pk %}" class="btn btn-dark">수정</a>
+          <a href="{% url 'movies:delete' movie.pk %}" class="btn btn-dark">삭제</a>
+        </div>
+        <div class="text-end">
+          <a href="{% url 'articles:article_create' movie.pk %}" class="btn btn-dark">리뷰 쓰기</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock body %}

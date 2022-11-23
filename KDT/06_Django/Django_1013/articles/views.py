@@ -1,13 +1,19 @@
-from django.shortcuts import redirect, render
-from articles.models import Article, Movie
-from articles.forms import ArticleForm, MovieArticleForm
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from articles.models import Article, Comment
+from movies.models import Movie
+from articles.forms import ArticleForm, MovieArticleForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    articles = Article.objects.all()
+    articles = Article.objects.order_by('-pk')
+    page = request.GET.get('page', '1')
+    paginator = Paginator(articles, 5)
+    page_obj = paginator.get_page(page)
     context = {
-        'articles':articles
+        'articles':page_obj
     }
     return render(request, 'articles/index.html', context)
 
@@ -50,8 +56,24 @@ def article_create(request, movie_pk):
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
+    movie = article.movie
+    comments = article.comment_set.all()
+    comment_form = CommentForm()
+    sum_articles = Article.objects.filter(movie=movie)
+    sum = 0
+    count = 0
+    for sum_article in sum_articles:
+        sum += sum_article.grade
+        count += 1
+    if sum:
+        avg_grade = round(sum/count, 2)
+    else:
+        avg_grade = 0
     context = {
         'article': article,
+        'comments': comments,
+        'comment_form': comment_form,
+        'avg_grade': avg_grade,
     }
     return render(request, 'articles/detail.html', context)
 
@@ -76,3 +98,36 @@ def delete(request, pk):
     article.delete()
     return redirect('articles:index')
 
+@login_required
+def comment_create(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.article = article
+        comment.user = request.user
+        comment.save()
+        context = {
+            'content': comment.content,
+            'created_at': comment.created_at,
+            'userName': comment.user.username,
+            'avg_grade': comment.user.avg_grade,
+        }
+        return JsonResponse(context)
+    return redirect('articles:detail', pk)
+
+@login_required
+def comment_delete(request, article_pk, comment_pk):
+    print(request.POST)
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    return redirect('articles:detail', article_pk)
+
+@login_required
+def like(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.user in article.like_users.all(): 
+        article.like_users.remove(request.user)
+    else:
+        article.like_users.add(request.user)
+    return redirect('articles:detail', pk)

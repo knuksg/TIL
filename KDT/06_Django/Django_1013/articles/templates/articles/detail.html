@@ -1,24 +1,154 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% block css %}{% endblock css %}
 {% block body %}
-  <p class="text-center">{{ article.movie }}</p>
-  <h1 class="text-center">
-    {{ article.title }}</h1>
-  <div class="text-end">
-    <p>작성자:
-      {{ article.user }}</p>
-    <p>작성 |
-      {{ article.created_at }}</p>
-    <p>수정 |
-      {{ article.updated_at }}</p>
-
+  <div class="card text-white bg-dark my-3">
+    <div class="card-body">
+      <div>
+        <a href="{% url 'movies:detail' article.movie.pk %}" class="d-inline-block align-top">
+          <img src="{{ article.movie.image_thumbnail.url }}" alt="">
+        </a>
+        <div class="d-inline-block align-top ms-3">
+          <div class="d-flex flex-column justify-content-between" style="height: 100px;">
+            <div>
+              <p class="m-0 fw-bold opacity-75">
+                {{ article.movie }}
+              </p>
+              <p class="m-0 opacity-75">
+                평점 | {{ avg_grade }}
+              </p>
+            </div>
+            <div class="m-0">
+              <p class="m-0 opacity-75">
+                <i class="bi bi-person-circle"></i>
+                {{ article.user }}
+              </p>
+              <p class="m-0 opacity-75">
+                <i class="bi bi-star-fill text-warning"></i>
+                {{ article.grade }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <span class="position-absolute opacity-75" style="right: 1rem;">
+          {{ article.created_string}}
+        </span>
+      </div>
+      <div class="mt-3">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text opacity-75">{{ article.content }}</p>
+        <div class="d-flex gap-3">
+          <div>
+            {% if request.user in article.like_users.all %}
+            <a href="{% url 'articles:like' article.pk %}" class="text-decoration-none text-danger">
+              <i class="bi bi-heart-fill"></i>
+            </a>
+            {% else %}
+            <a href="{% url 'articles:like' article.pk %}" class="text-decoration-none text-danger">
+              <i class="bi bi-heart"></i>
+            </a>
+            {% endif %}
+            {{ article.like_users.count }}
+          </div>
+          <div class="form-group">
+            {% for field in comment_form.visible_fields %}
+              {% if comments %}
+              <label for="{{ field.id_for_label }}">
+                <p class="m-0">
+                  <b><i class="bi bi-chat-dots-fill"></i>
+                    {{ comments|length }}</b>
+                  </p>
+              </label>
+              {% else %}
+              <label for="{{ field.id_for_label }}">
+                <p class="m-0">
+                  <b><i class="bi bi-chat-dots-fill"></i> 0</b>
+                </p>
+              </label>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <p class="text-center">내용:
-    {{ article.content }}</p>
   {% if request.user == article.user %}
     <div class="text-center">
       <a href="{% url 'articles:update' article.pk %}" class="btn btn-dark">수정</a>
       <a href="{% url 'articles:delete' article.pk %}" class="btn btn-dark">삭제</a>
     </div>
   {% endif %}
+  <h4 class="my-3">댓글 목록</h4>
+  <div id='comments'>
+    {% for comment in comments %}
+      <div class="card text-white bg-dark my-3">
+        <div class="card-body">
+          <p><i class="bi bi-person-circle"></i>
+            {{comment.user}}
+            <small class="text-muted">
+              | 평균 <i class="bi bi-star-fill"></i> {{comment.user.avg_grade}}
+            </small>
+            <small class="text-muted">| {{comment.created_at}}</small>
+          </p>
+          <p class="m-0"><i class="bi bi-chat-fill"></i>
+            <span class="opacity-75">{{comment.content}}</span>
+          </p>
+          {% if comment.user == request.user %}
+            <form id="comment-delete-form" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" class="d-inline position-absolute" style="top: 1rem; right: 1rem;">
+              {% csrf_token %}
+              {% bootstrap_button "삭제"  button_type="submit" button_class="btn btn-outline-light btn-sm" %}
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    {% empty %}
+      <p>댓글이 없어요...</p>
+    {% endfor %}
+  </div>
+  {% if request.user.is_authenticated %}
+  <div class="sticky-bottom">
+    <form id="comment-form" data-article-id="{{ article.pk }}">
+      <div class="row justify-content-center align-items-center g-0 m-0 p-0">
+      {% csrf_token %}
+        <div class="col-10">{% bootstrap_form comment_form layout='inline' %}</div>
+        <input type="submit" class="col-2 btn btn-dark btn-outline-light" value="작성">
+      </div>
+    </form>
+  </div>
+  {% endif %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 댓글!
+  // (1) 댓글 폼
+  const commentForm = document.querySelector('#comment-form')
+  // (2) 제출하면, 함수 실행시킬래 
+  // csrf 
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  commentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    axios({
+      method: 'post',
+      url: `/articles/${event.target.dataset.articleId}/comments/`,
+      headers: {'X-CSRFToken': csrftoken},
+      data: new FormData(commentForm)
+    })
+    .then(response => {
+      const comments = document.querySelector('#comments')
+      const div1 = document.createElement('div')
+      div1.classList = "card text-white bg-dark my-3"
+      const div2 = document.createElement('div')
+      div1.appendChild(div2)
+      div2.classList = "card-body"
+      const p1 = document.createElement('p')
+      const p2 = document.createElement('p')
+      div2.append(p1, p2)
+      p1.innerHTML = `<i class="bi bi-person-circle"></i>  ${response.data.userName}  <small class="text-muted"> | 평균 <i class="bi bi-star-fill"></i>  ${response.data.avg_grade}  </small><small class="text-muted">| ${response.data.created_at} </small>`
+      p2.innerHTML = `<i class="bi bi-chat-fill"></i><span class="opacity-75"> ${response.data.content}</span>`
+      comments.appendChild(div1) 
+      commentForm.reset()
+    })
+  })
+</script> 
 {% endblock body %}

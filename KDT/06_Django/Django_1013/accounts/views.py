@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+from articles.models import Article
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth import login as auth_login
@@ -30,8 +31,24 @@ def signup(request):
 
 def detail(request, user_pk):
     user = get_user_model().objects.get(pk=user_pk)
+    articles = user.article_set.all()[0:2]
+    like_articles = user.like_articles.all()[0:2]
+    # 평균 별점
+    sum_users = Article.objects.filter(user=user)
+    sum = 0
+    count = 0
+    for sum_user in sum_users:
+        sum += sum_user.grade
+        count += 1
+    if sum:
+        avg_user = round(sum/count, 2)
+    else:
+        avg_user = 0
     context = {
         'user': user,
+        'articles': articles,
+        'like_articles': like_articles,
+        'avg_user': avg_user,
     }
     return render(request, 'accounts/detail.html', context)
 
@@ -85,3 +102,30 @@ def delete(request):
     request.user.delete()
     auth_logout(request)
     return redirect('articles:index')
+
+@login_required
+def follow(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
+    if request.user in user.followings.all():
+        user.followings.remove(request.user)
+    else:
+        user.followings.add(request.user)
+    return redirect('accounts:detail', user_pk)
+
+def followers(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
+    followers = user.followers.all()
+    context = {
+        'user': user,
+        'followers': followers,
+    }
+    return render(request, 'accounts/followers.html', context)
+
+def followings(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
+    followings = user.followings.all()
+    context = {
+        'user': user,
+        'followings': followings,
+    }
+    return render(request, 'accounts/followings.html', context)

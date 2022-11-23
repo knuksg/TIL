@@ -6,4 +6,4 @@ class MovieForm(forms.ModelForm):
 
     class Meta:
         model = Movie
-        fields = ['title', 'content', ]
+        fields = ['title', 'content', 'image', ]

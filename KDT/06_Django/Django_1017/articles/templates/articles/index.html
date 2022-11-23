@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body %}
+
+  <div class="row">
+    {% for article in articles %}
+      <div class="col-4">
+        <div class="card">
+          {% if article.thumbnail %}
+            <img src="{{ article.thumbnail.url }}" class="card-img-top" alt="...">
+          {% else %}
+            <img src="" class="card-img-top" alt="...">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <a href="{% url 'articles:detail' article.pk %}" class="btn btn-outline-primary my-3">자세히 보기</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock body %}

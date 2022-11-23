@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body %}
+  <h1>{{ article.pk }}번 게시글</h1>
+  <p>{{ article.content }}
+  </p>
+  {% if article.image %}
+    <img src="{{ article.image.url }}" class="img-fluid" alt="{{ article.image }}">
+  {% endif %}
+  <h4 class="my-3">댓글 작성</h4>
+  <form action="{% url 'articles:comment_create' article.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form comment_form %}
+    {% bootstrap_button "Save"  button_type="submit" button_class="btn btn-outline-primary" %}
+  </form>
+  <h4 class="my-3">댓글 목록</h4>
+  {% if article.comment_set.all %}
+    <p>
+      <b>{{ article.comment_set.all|length }}개의 댓글이 있습니다.</b>
+    </p>
+  {% endif %}
+  {% for comment in article.comment_set.all %}
+    <div class="my-3">
+      <span>{{comment.content}}
+      </span>
+      <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="post" class="d-inline">
+        {% csrf_token %}
+        {% bootstrap_button "DELETE"  button_type="submit" button_class="btn btn-outline-primary" %}
+      </form>
+    </div>
+    {% empty %}
+    <p>댓글이 없어요...</p>
+  {% endfor %}
+  <a href="{% url 'articles:update' article.pk %}" class="btn btn-outline-primary my-3">수정하기</a>
+  <a href="{% url 'articles:delete' article.pk %}" class="btn btn-outline-primary my-3">삭제하기</a>
+{% endblock %}

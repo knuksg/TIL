@@ -2,14 +2,39 @@
 {% load static %}
 {% load django_bootstrap5 %}
 {% block body %}
+  <div class="card text-white bg-dark my-3">
+    <div class="card-body">
+      <p><i class="bi bi-person-circle"></i>
+        ID: {{ user.username }}</p>
+      <p><i class="bi bi-envelope-fill"></i>
+        Email: {{ user.email }}</p>
+      <p><i class="bi bi-emoji-sunglasses-fill"></i>
+        Name: {{ user.last_name }}{{ user.first_name }}</p>
+      <p><i class="bi bi-star-fill"></i>
+        평균 별점: {{ user.avg_grade }}
+      </p>
+      <div class="m-0">
+        <span class="me-3"><i class="bi bi-people-fill"></i>
+          <a href="{% url 'accounts:followings' user.pk %}" class="text-decoration-none text-white">
+            팔로워: {{ user.followings.all.count }}
+          </a>
+        </span>
+        <span><i class="bi bi-person-heart"></i>
+        <a href="{% url 'accounts:followers' user.pk %}" class="text-decoration-none text-white">
+          팔로잉: {{ user.followers.all.count }}
+        </a>
+        </span>
+      </div>
+    </div>
+  </div>
+  {% if request.user != user %}
+    {% if request.user in user.followings.all %}
+    <a href="{% url 'accounts:follow' user.pk %}" class="btn btn-dark">팔로우 취소</a>
+    {% else %}
+    <a href="{% url 'accounts:follow' user.pk %}" class="btn btn-dark">팔로우</a>
+    {% endif %}
+  {% endif %}
   <div class="text-center">
-    <p>ID:
-      {{ user.username }}</p>
-    <p>Email:
-      {{ user.email }}</p>
-    <p>Name:
-      {{ user.last_name }}{{ user.first_name }}</p>
-
     {% if request.user == user %}
       <div class="">
         <a href="{% url 'accounts:update' %}" class="btn btn-dark user-btn">회원정보 수정</a>
@@ -46,4 +71,125 @@
       </script>
     {% endif %}
   </div>
+  <h2 class="mt-5 text-center">게시글 목록</h2>
+  <p class="text-center">2개까지만 출력</p>
+  {% for article in articles %}
+    <div class="card text-white bg-dark my-3">
+      <div class="card-body">
+        <div>
+          <a href="{% url 'movies:detail' article.movie.pk %}" class="d-inline-block align-top">
+            <img src="{{ article.movie.image_thumbnail.url }}" alt="">
+          </a>
+          <div class="d-inline-block align-top ms-3">
+            <div class="d-flex flex-column justify-content-between" style="height: 100px;">
+              <div>
+                <p class="m-0 fw-bold opacity-75">
+                  {{ article.movie }}
+                </p>
+                <p class="m-0 opacity-75">
+                  평점 | {{ article.movie.avg_grade }}
+                </p>
+              </div>
+              <div class="m-0">
+                <p class="m-0 opacity-75">
+                  <i class="bi bi-star-fill"></i>
+                  {{ article.grade }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <span class="position-absolute opacity-75" style="right: 1rem;">
+            {{ article.created_string }}
+          </span>
+        </div>
+        <div class="mt-3">
+          <h4 class="card-title">{{ article.title }}</h4>
+          <p class="card-text">{{ article.content }}</p>
+          <div class="d-flex gap-3">
+            <div>
+              {% if request.user in article.like_users.all %}
+                <i class="bi bi-heart-fill"></i>
+              {% else %}
+                <i class="bi bi-heart"></i>
+              {% endif %}
+              {{ article.like_users.count }}
+            </div>
+            <a href="{% url 'articles:detail' article.pk %}" class="text-decoration-none text-white">
+              <p class="m-0">
+                {% if article.comment_set.all %}
+                  <b><i class="bi bi-chat-dots-fill"></i>
+                  {{ article.comment_set.all|length }}</b>
+                {% else %}
+                  <b><i class="bi bi-chat-dots-fill"></i> 0</b>
+                {% endif %}
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  <h2 class="mt-5 text-center">좋아요한 게시글 목록</h2>
+  <p class="text-center">2개까지만 출력</p>
+  {% for like_article in like_articles %}
+  <div class="card text-white bg-dark my-3">
+    <div class="card-body">
+      <div>
+        <a href="{% url 'movies:detail' like_article.movie.pk %}" class="d-inline-block align-top">
+          <img src="{{ like_article.movie.image_thumbnail.url }}" alt="">
+        </a>
+        <div class="d-inline-block align-top ms-3">
+          <div class="d-flex flex-column justify-content-between" style="height: 100px;">
+            <div>
+              <p class="m-0 fw-bold opacity-75">
+                {{ like_article.movie }}
+              </p>
+              <p class="m-0 opacity-75">
+                평점 | {{ like_article.movie.avg_grade }}
+              </p>
+            </div>
+            <div class="m-0">
+              <p class="m-0 opacity-75">
+                <i class="bi bi-person-circle"></i>
+                {{ like_article.user }}
+              </p>
+              <p class="m-0 opacity-75">
+                <i class="bi bi-star-fill text-warning"></i>
+                {{ like_article.grade }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <span class="position-absolute opacity-75" style="right: 1rem;">
+          {{ like_article.created_string }}
+        </span>
+      </div>
+      <div class="mt-3">
+        <h4 class="card-title">{{ like_article.title }}</h4>
+        <p class="card-text">{{ like_article.content }}</p>
+        <div class="d-flex gap-3">
+          <div>
+            {% if request.user in like_article.like_users.all %}
+              <i class="bi bi-heart-fill"></i>
+            {% else %}
+              <i class="bi bi-heart"></i>
+            {% endif %}
+            {{ like_article.like_users.count }}
+          </div>
+          <a href="{% url 'articles:detail' like_article.pk %}" class="text-decoration-none text-white">
+            <p class="m-0">
+              {% if like_article.comment_set.all %}
+                <b><i class="bi bi-chat-dots-fill"></i>
+                {{ like_article.comment_set.all|length }}</b>
+              {% else %}
+                <b><i class="bi bi-chat-dots-fill"></i> 0</b>
+              {% endif %}
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
 {% endblock body %}
